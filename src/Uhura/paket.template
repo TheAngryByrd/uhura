@@ -1,0 +1,25 @@
+type project
+title
+    Uhura
+owners
+    Jimmy Byrd
+authors 
+    Jimmy Byrd
+projectUrl
+    https://github.com/TheAngryByrd/Uhura
+iconUrl
+    https://raw.githubusercontent.com/TheAngryByrd/Uhura/master/docs/files/img/logo.png
+licenseUrl
+    https://github.com/TheAngryByrd/Uhura/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2015
+tags
+    http routing owin
+summary
+    Fast routing library for owin
+description
+    Description not set
+
+
