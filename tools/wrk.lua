@@ -1,7 +1,7 @@
+JSON = require("tools/JSON")
 done = function(summary, latency, requests)
    io.write("------------------------------\n")
-   for _, p in pairs({ 50, 90, 99, 99.999 }) do
-      n = latency:percentile(p)
-      io.write(string.format("%g%%,%d\n", p, n))
-   end
+   summaryjson = JSON:encode(summary)  
+   io.write(string.format("%s\n", summaryjson))
+
 end
