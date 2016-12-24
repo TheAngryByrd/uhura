@@ -16,6 +16,11 @@
     "Microsoft.AspNetCore.Hosting" : "1.1.0",
     "Hopac": "0.3.23"
   },
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
   "tools": {
     "dotnet-compile-fsc": "1.0.0-preview2.1-*"
   },
