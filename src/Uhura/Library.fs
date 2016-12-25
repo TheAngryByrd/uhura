@@ -29,6 +29,17 @@ module Web =
                 Path : string
                 Handler : RouteHandler
             }
+            let createRoute method path handler = 
+              { Method = method; Path = path ; Handler = handler }
+            let GET path handler =
+              createRoute Http.Methods.GET path handler
+            let POST path handler =
+              createRoute Http.Methods.POST path handler
+            let PUT path handler =
+              createRoute Http.Methods.GET path handler
+            let DELETE path handler =
+              createRoute Http.Methods.DELETE path handler
+             
 
             let inline toLowerInvariant (path : string) =
                 path.ToLowerInvariant()

@@ -11,21 +11,17 @@ let helloWorldHandler (ctx : HttpContext) = job {
     do! ctx.Response.WriteAsync("Hello world") |> Job.awaitUnitTask
 }
 
-
+let routes =
+    [
+        GET "/" helloWorldHandler
+    ]
 [<EntryPoint>]
 let main argv =
-    let buildRoutes appBuilder =
-        let routes =
-            [
-                { Method = Http.Methods.GET; Path = "/"   ; Handler = helloWorldHandler }
-             
-            ]
 
-        routes |> applyRoutes appBuilder
     WebHostBuilder()
         .UseUrls("http://localhost:8080")
         .UseKestrel()
-        .Configure(fun a -> buildRoutes a)
+        .Configure(fun appBuilder -> applyRoutes appBuilder routes)
         .Build()
         .Run()
 
