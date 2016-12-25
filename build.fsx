@@ -2,6 +2,8 @@
 // FAKE build script
 // --------------------------------------------------------------------------------------
 
+#r @"packages/build/Newtonsoft.Json/lib/net45//Newtonsoft.Json.dll"
+open Newtonsoft.Json
 #r @"packages/build/FAKE/tools/FakeLib.dll"
 open Fake
 open Fake.Git
@@ -10,6 +12,8 @@ open Fake.ReleaseNotesHelper
 open Fake.UserInputHelper
 open System
 open System.IO
+open System.Diagnostics
+open System.Net.Sockets
 #if MONO
 #else
 #load "packages/build/SourceLink.Fake/tools/Fake.fsx"
@@ -32,7 +36,7 @@ let project = "Uhura"
 
 // Short summary of the project
 // (used as description in AssemblyInfo and as a short summary for NuGet package)
-let summary = "Fast routing library for owin"
+let summary = "A fast and simple routing library for owin"
 
 // Longer description of the project
 // (used as a description for NuGet package; line breaks are automatically cleaned up)
@@ -79,6 +83,47 @@ let (|Fsproj|Csproj|Vbproj|Shproj|) (projFileName:string) =
     | f when f.EndsWith("vbproj") -> Vbproj
     | f when f.EndsWith("shproj") -> Shproj
     | _                           -> failwith (sprintf "Project file %s not supported. Unknown project type." projFileName)
+
+
+
+
+// type DisposeableProcess (proc : System.Diagnostics.Process) = 
+//     member __.Process = proc
+//     interface IDisposable with
+//       member __.Dispose() = __.Process.Kill()
+let waitForExit ( proc : Process) = proc.WaitForExit()
+let startProc fileName args workingDir=
+    let proc = 
+        ProcessStartInfo(FileName = fileName, Arguments = args, WorkingDirectory = workingDir, UseShellExecute = false) 
+        |> Process.Start
+
+    proc 
+
+let getProcessIdByPort port =
+    let result =
+        ExecProcessAndReturnMessages 
+                        (fun psi ->
+                            psi.FileName <- "lsof"
+                            psi.Arguments <-(sprintf "-ti tcp:%d" port)
+                        ) (TimeSpan.FromMinutes(1.))
+    result.Messages |> Seq.head |> int
+
+let rec waitForPortInUse port =
+    use client = new TcpClient()
+    try
+        client.Connect("127.0.0.1",port)
+
+        while client.Connected |> not do
+            client.Connect("127.0.0.1",port)
+    with e -> waitForPortInUse port
+ 
+let kill procId =
+    printfn "killing process id %d" procId
+    startProc "kill" (procId |> sprintf "-3 %d") ""
+
+let dotnetrun project =
+    let args = sprintf "run --project %s"  project
+    startProc "dotnet" args ""
 
 // Generate assembly info files with the right version & up-to-date information
 Target "AssemblyInfo" (fun _ ->
@@ -153,6 +198,45 @@ Target "RunTests" (fun _ ->
             DisableShadowCopy = true
             TimeOut = TimeSpan.FromMinutes 20.
             OutputFile = "TestResults.xml" })
+)
+
+
+// --------------------------------------------------------------------------------------
+
+//{"bytes":217834904,"duration":30099407,"errors":{"connect":0,"read":182,"status":0,"timeout":0,"write":0},"requests":1785532}
+type Error = {
+    connect : int
+    read : int
+    status : int
+    timeout : int
+    write : int
+}
+
+type Summary = {
+    bytes : int64
+    duration : int64
+    requests : int64
+    errors : Error
+}
+
+
+
+let wrk threads connections duration script url=
+    let args = sprintf "-t%d -c%d -d%d -s %s %s" threads connections duration script url
+    let result = ExecProcessAndReturnMessages 
+                    (fun psi ->
+                        psi.FileName <- "wrk"
+                        psi.Arguments <-args
+                    ) (TimeSpan.FromMinutes(1.))
+    JsonConvert.DeserializeObject<Summary>(result.Messages |> Seq.last)
+    
+
+Target "Benchmark" (fun _ ->
+    use webproc = dotnetrun "./examples/kestrel"
+    waitForPortInUse 8080 
+    wrk 8 400 30 "./tools/wrk.lua" "http://localhost:8080/" |> printfn "%A"
+    getProcessIdByPort 8080 |> kill |> waitForExit
+
 )
 
 #if MONO
