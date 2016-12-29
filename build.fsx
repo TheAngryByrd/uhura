@@ -203,6 +203,7 @@ Target "RunTests" (fun _ ->
 
 // --------------------------------------------------------------------------------------
 
+//https://github.com/wg/wrk/blob/50305ed1d89408c26067a970dcd5d9dbea19de9d/SCRIPTING
 //{"bytes":217834904,"duration":30099407,"errors":{"connect":0,"read":182,"status":0,"timeout":0,"write":0},"requests":1785532}
 type Error = {
     connect : int
