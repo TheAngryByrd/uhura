@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-*",
+  "version": "0.1.1-*",
   "buildOptions": {
     "debugType": "portable",
     "compilerName": "fsc",
@@ -13,8 +13,7 @@
     "dotnet-compile-fsc": "1.0.0-preview2.1-*"
   },
     "dependencies": {
-    "Microsoft.AspNetCore.Owin": "1.1.0",
-    "Hopac": "0.3.23"
+    "Microsoft.AspNetCore.Owin": "1.1.0"
   },
   "frameworks": {
     "netcoreapp1.1": {

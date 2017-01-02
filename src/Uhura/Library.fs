@@ -24,7 +24,6 @@ module Web =
             [<Literal>] 
             let CONNECT = "CONNECT"
     module Routing =
-        open Hopac
         open Microsoft.AspNetCore.Builder
         open Microsoft.AspNetCore.Http
         open System.Threading.Tasks
@@ -32,8 +31,9 @@ module Web =
         open System
         open System.Linq
         open System.Collections.Generic
+        open System.Threading.Tasks
 
-        type RouteHandler = IDictionary<string,string> ->  HttpContext -> Job<unit>
+        type RouteHandler = IDictionary<string,string> ->  HttpContext -> Task
         type Route = {
             Method : string
             Path : string
@@ -104,7 +104,7 @@ module Web =
                 let regex = createRegexFromPath route.Path
                 appBuilder.MapWhen(
                     (fun httpContext -> matches route regex httpContext), 
-                    fun app -> app.Run (fun httpContext -> (httpContext |> route.Handler (getMatches httpContext) |> Hopac.startAsTask |> unitTaskToTask ))) 
+                    fun app -> app.Run (fun httpContext -> (httpContext |> route.Handler (getMatches httpContext) ))) 
                 |> ignore
             )
 

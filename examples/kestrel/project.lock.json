@@ -2708,11 +2708,10 @@
           "lib/netstandard1.3/_._": {}
         }
       },
-      "Uhura/1.0.0": {
+      "Uhura/0.1.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.1",
         "dependencies": {
-          "Hopac": "0.3.23",
           "Microsoft.AspNetCore.Owin": "1.1.0",
           "Microsoft.FSharp.Core.netcore": "1.0.0-alpha-160629",
           "Microsoft.NETCore.App": "1.1.0"
@@ -8030,7 +8029,7 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Uhura/1.0.0": {
+    "Uhura/0.1.1": {
       "type": "project",
       "path": "../../src/Uhura/project.json"
     }
@@ -8045,7 +8044,7 @@
     ".NETCoreApp,Version=v1.1": [
       "Microsoft.FSharp.Core.netcore >= 1.0.0-alpha-160629",
       "Microsoft.NETCore.App >= 1.1.0",
-      "Uhura >= 1.0.0"
+      "Uhura >= 0.1.1"
     ]
   },
   "tools": {

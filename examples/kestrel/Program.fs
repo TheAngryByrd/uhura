@@ -20,13 +20,17 @@ let getUsers  groups (ctx : HttpContext)= job {
     let id = tryGetNamedParam groups "id" |> Option.get
     do! ctx.Response.WriteAsync(sprintf "Hello %s" id) |> Job.awaitUnitTask
 }
+let inline (>>+) f g x y = g (f x y)
+
+let inline jobToTask f  =
+    f  >>+ (startAsTask >> unitTaskToTask)
 
 let routes =
     [
-        GET "/" helloWorldHandler
-        GET "/what/do" helloWorldHandler
-        GET "/users/(?<id>\d{1,5})/do" getUsers
-        GET "/:name" helloNameHandler
+        GET "/" (jobToTask helloWorldHandler)
+        GET "/what/do" (jobToTask helloWorldHandler)
+        GET "/users/(?<id>\d{1,5})/do" (jobToTask getUsers)
+        GET "/:name" (jobToTask helloNameHandler)
     ]
 [<EntryPoint>]
 let main argv =

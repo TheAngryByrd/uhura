@@ -33,7 +33,7 @@
         },
         "Microsoft.FSharp.Core.netcore": "1.0.0-alpha-160629",
         "Uhura":{
-          "version": "1.0.0",
+          "version": "0.1.1",
           "target": "project"
         }
       }
