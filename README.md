@@ -11,7 +11,7 @@ In order to build run
     
 ## Hello World 
 
-module Main
+
 
 ```FSharp
 open Microsoft.AspNetCore.Builder
