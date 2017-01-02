@@ -7,6 +7,7 @@ open Microsoft.AspNetCore.Http
 open Uhura.Web
 open Uhura.Web.Routing
 open Hopac
+open System.Threading.Tasks
 let helloWorldHandler groups (ctx : HttpContext) = job {
     do! ctx.Response.WriteAsync("Hello world") |> Job.awaitUnitTask
 }
@@ -22,6 +23,7 @@ let getUsers  groups (ctx : HttpContext)= job {
 }
 let inline (>>+) f g x y = g (f x y)
 
+let unitTaskToTask (t : Task<unit>) = t :> Task
 let inline jobToTask f  =
     f  >>+ (startAsTask >> unitTaskToTask)
 
@@ -38,7 +40,7 @@ let main argv =
     WebHostBuilder()
         .UseUrls("http://localhost:8080")
         .UseKestrel()
-        .Configure(fun appBuilder -> applyRoutes appBuilder routes)
+        .Configure(fun appBuilder -> openHailingFrequencies appBuilder routes)
         .Build()
         .Run()
 

@@ -3,45 +3,6 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
-      "FSharp.Core/4.0.1.7-alpha": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "NETStandard.Library": "1.6.0",
-          "System.Linq.Expressions": "4.1.0",
-          "System.Linq.Queryable": "4.0.1",
-          "System.Net.Requests": "4.0.11",
-          "System.Reflection.Emit": "4.0.1",
-          "System.Reflection.TypeExtensions": "4.1.0",
-          "System.Runtime.Loader": "4.0.0",
-          "System.Threading.Tasks.Parallel": "4.0.1",
-          "System.Threading.Thread": "4.0.0",
-          "System.Threading.ThreadPool": "4.0.10"
-        },
-        "compile": {
-          "lib/netstandard1.6/FSharp.Core.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.6/FSharp.Core.dll": {}
-        }
-      },
-      "Hopac/0.3.23": {
-        "type": "package",
-        "dependencies": {
-          "FSharp.Core": "4.0.1.7-alpha",
-          "NETStandard.Library": "1.6.0"
-        },
-        "compile": {
-          "lib/netstandard1.6/Hopac.Core.dll": {},
-          "lib/netstandard1.6/Hopac.Platform.dll": {},
-          "lib/netstandard1.6/Hopac.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.6/Hopac.Core.dll": {},
-          "lib/netstandard1.6/Hopac.Platform.dll": {},
-          "lib/netstandard1.6/Hopac.dll": {}
-        }
-      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -2447,70 +2408,6 @@
     }
   },
   "libraries": {
-    "FSharp.Core/4.0.1.7-alpha": {
-      "sha512": "y/ibFVeeXLA+wdNXfwgjGpoJyq33S0x49kRsQLuwkhDuWPNz0qeIrf83a80yZhfQVOAdLjA7JieG+xGje832Ng==",
-      "type": "package",
-      "path": "FSharp.Core/4.0.1.7-alpha",
-      "files": [
-        "FSharp.Core.4.0.1.7-alpha.nupkg.sha512",
-        "FSharp.Core.nuspec",
-        "lib/net20/FSharp.Core.dll",
-        "lib/net20/FSharp.Core.optdata",
-        "lib/net20/FSharp.Core.sigdata",
-        "lib/net20/FSharp.Core.xml",
-        "lib/net40/FSharp.Core.dll",
-        "lib/net40/FSharp.Core.optdata",
-        "lib/net40/FSharp.Core.sigdata",
-        "lib/net40/FSharp.Core.xml",
-        "lib/netstandard1.6/FSharp.Core.dll",
-        "lib/netstandard1.6/FSharp.Core.optdata",
-        "lib/netstandard1.6/FSharp.Core.runtimeconfig.json",
-        "lib/netstandard1.6/FSharp.Core.sigdata",
-        "lib/portable-net45+monoandroid10+monotouch10+xamarinios10/FSharp.Core.dll",
-        "lib/portable-net45+monoandroid10+monotouch10+xamarinios10/FSharp.Core.optdata",
-        "lib/portable-net45+monoandroid10+monotouch10+xamarinios10/FSharp.Core.sigdata",
-        "lib/portable-net45+monoandroid10+monotouch10+xamarinios10/FSharp.Core.xml",
-        "lib/portable-net45+netcore45+wp8/FSharp.Core.dll",
-        "lib/portable-net45+netcore45+wp8/FSharp.Core.optdata",
-        "lib/portable-net45+netcore45+wp8/FSharp.Core.sigdata",
-        "lib/portable-net45+netcore45+wp8/FSharp.Core.xml",
-        "lib/portable-net45+netcore45+wpa81+wp8/FSharp.Core.dll",
-        "lib/portable-net45+netcore45+wpa81+wp8/FSharp.Core.optdata",
-        "lib/portable-net45+netcore45+wpa81+wp8/FSharp.Core.sigdata",
-        "lib/portable-net45+netcore45+wpa81+wp8/FSharp.Core.xml",
-        "lib/portable-net45+netcore45/FSharp.Core.dll",
-        "lib/portable-net45+netcore45/FSharp.Core.optdata",
-        "lib/portable-net45+netcore45/FSharp.Core.sigdata",
-        "lib/portable-net45+netcore45/FSharp.Core.xml",
-        "lib/portable-net45+sl5+netcore45/FSharp.Core.dll",
-        "lib/portable-net45+sl5+netcore45/FSharp.Core.optdata",
-        "lib/portable-net45+sl5+netcore45/FSharp.Core.sigdata",
-        "lib/portable-net45+sl5+netcore45/FSharp.Core.xml"
-      ]
-    },
-    "Hopac/0.3.23": {
-      "sha512": "Dh/Vn6pno6uMhZ1omt0MhPBVXDCmFW6atZzQ0HCNZQTRzFOL/vZjARVcIO7KhKyOApL/z6Als2Crc6/S5nj8jg==",
-      "type": "package",
-      "path": "Hopac/0.3.23",
-      "files": [
-        "Hopac.0.3.23.nupkg.sha512",
-        "Hopac.nuspec",
-        "lib/net45/Hopac.Core.dll",
-        "lib/net45/Hopac.Core.dll.mdb",
-        "lib/net45/Hopac.Core.xml",
-        "lib/net45/Hopac.Platform.dll",
-        "lib/net45/Hopac.Platform.dll.mdb",
-        "lib/net45/Hopac.dll",
-        "lib/net45/Hopac.dll.mdb",
-        "lib/net45/Hopac.xml",
-        "lib/netstandard1.6/Hopac.Core.dll",
-        "lib/netstandard1.6/Hopac.Core.xml",
-        "lib/netstandard1.6/Hopac.Platform.dll",
-        "lib/netstandard1.6/Hopac.Platform.xml",
-        "lib/netstandard1.6/Hopac.dll",
-        "lib/netstandard1.6/Hopac.xml"
-      ]
-    },
     "Libuv/1.9.1": {
       "sha512": "J1o6qX/F5f2CMK0wq+4KLKQ44tNkMVbduANGYD8GXBgT9jMYxMdEnsuJwk24BF2FLHKIvO9c9h8NUbyVH8hUkw==",
       "type": "package",
@@ -7574,7 +7471,6 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Hopac >= 0.3.23",
       "Microsoft.AspNetCore.Owin >= 1.1.0"
     ],
     ".NETCoreApp,Version=v1.1": [

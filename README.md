@@ -1,41 +1,14 @@
-[![Issue Stats](http://issuestats.com/github/fsprojects/ProjectScaffold/badge/issue)](http://issuestats.com/github/fsprojects/ProjectScaffold)
-[![Issue Stats](http://issuestats.com/github/fsprojects/ProjectScaffold/badge/pr)](http://issuestats.com/github/fsprojects/ProjectScaffold)
 
-# ProjectScaffold
+# Uhura
 
-This project can be used to scaffold a prototypical .NET solution including file system layout and tooling. This includes a build process that: 
+This is a super simple url router for Owin/Kestrel.  It's designed be super simple with use from F# for microservices.  If you need something more robust I suggest [Suave](https://suave.io/), [Nancy](http://nancyfx.org/) or [Asp.Net](https://www.asp.net/core)
 
-* updates all AssemblyInfo files
-* compiles the application and runs all test projects
-* generates [SourceLinks](https://github.com/ctaggart/SourceLink)
-* generates API docs based on XML document tags
-* generates [documentation based on Markdown files](http://fsprojects.github.io/ProjectScaffold/writing-docs.html)
-* generates [NuGet](http://www.nuget.org) packages
-* and allows a simple [one step release process](http://fsprojects.github.io/ProjectScaffold/release-process.html).
-
-In order to start the scaffolding process run 
+In order to build run
 
     > build.cmd // on windows    
     $ ./build.sh  // on unix
     
-Read the [Getting started tutorial](http://fsprojects.github.io/ProjectScaffold/index.html#Getting-started) to learn more.
-
-Documentation: http://fsprojects.github.io/ProjectScaffold
-
-## Requirements
-
-ProjectScaffold requires a local git installation. You can download git from [Git Downloads](https://git-scm.com/downloads).
-
-## Build Status
-
-Mono | .NET
----- | ----
-[![Mono CI Build Status](https://img.shields.io/travis/fsprojects/ProjectScaffold/master.svg)](https://travis-ci.org/fsprojects/ProjectScaffold) | [![.NET Build Status](https://img.shields.io/appveyor/ci/fsgit/ProjectScaffold/master.svg)](https://ci.appveyor.com/project/fsgit/projectscaffold)
-
 ## Maintainer(s)
 
-- [@forki](https://github.com/forki)
-- [@pblasucci](https://github.com/pblasucci)
-- [@sergey-tihon](https://github.com/sergey-tihon)
+- [theangrybyrd](https://github.com/theangrybyrd)
 
-The default maintainer account for projects under "fsprojects" is [@fsprojectsgit](https://github.com/fsprojectsgit) - F# Community Project Incubation Space (repo management)

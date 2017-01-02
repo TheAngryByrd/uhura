@@ -96,8 +96,6 @@ module Web =
                 |> dict
             groups
 
-        let inline unitTaskToTask (task : Task<unit>) =
-            task :> Task
         let inline applyRoutes (appBuilder : IApplicationBuilder) routes =
             routes
             |> Seq.iter(fun route ->
@@ -107,6 +105,10 @@ module Web =
                     fun app -> app.Run (fun httpContext -> (httpContext |> route.Handler (getMatches httpContext) ))) 
                 |> ignore
             )
+        
+        let inline openHailingFrequencies (appBuilder : IApplicationBuilder) routes = 
+            applyRoutes appBuilder routes
+            printfn "Halling frequencies open captain"
 
         let inline tryGetNamedParam (groups : IDictionary<string,string>) key =
             match groups.TryGetValue key with
