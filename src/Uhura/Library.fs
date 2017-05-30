@@ -85,16 +85,22 @@ module Web =
             else
                 false
 
-        let inline getMatches (httpContext : HttpContext) =
+        let inline getMatches (regex : Regex) (httpContext : HttpContext) =
+            let groupNames = regex.GetGroupNames()
             let m = httpContext.Items.[RegexMatchesKey] :?> Match
-            let groups =
-                m.Groups
-                |> Seq.cast<Group>
-                |> Seq.map(fun gc ->
-                    (gc.Name, gc.Value)
-                )
-                |> dict
-            groups
+            groupNames
+            |> Seq.map(fun name -> name, m.Groups.[name])
+            |> Seq.filter(fun (name, group) -> group.Captures.Count > 0)
+            |> Seq.map(fun (name, group) -> name,group.Value)
+            |> dict
+            // let groups =
+            //     m.Groups
+            //     |> Seq.cast<Group>
+            //     |> Seq.map(fun gc ->
+            //         (gc.Name, gc.Value)
+            //     )
+            //     |> dict
+            // groups
 
         let inline applyRoutes (appBuilder : IApplicationBuilder) routes =
             routes
@@ -102,7 +108,7 @@ module Web =
                 let regex = createRegexFromPath route.Path
                 appBuilder.MapWhen(
                     (fun httpContext -> matches route regex httpContext), 
-                    fun app -> app.Run (fun httpContext -> (httpContext |> route.Handler (getMatches httpContext) ))) 
+                    fun app -> app.Run (fun httpContext -> (httpContext |> route.Handler (getMatches regex httpContext) ))) 
                 |> ignore
             )
         

@@ -1,10 +1,14 @@
-module Uhura.Tests
+module Tests
 
+
+open Expecto
 open Uhura
-open NUnit.Framework
 
-[<Test>]
-let ``hello returns 42`` () =
-  let result = Library.hello 42
-  printfn "%i" result
-  Assert.AreEqual(42,result)
+[<Tests>]
+let tests =
+  testList "samples" [
+    testCase "Say hello all" <| fun _ ->
+      // let subject = Say.hello "all"
+      Expect.equal "Hello all" "Hello all" "You didn't say hello"
+    
+  ]
