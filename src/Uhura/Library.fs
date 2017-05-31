@@ -93,14 +93,7 @@ module Web =
             |> Seq.filter(fun (name, group) -> group.Captures.Count > 0)
             |> Seq.map(fun (name, group) -> name,group.Value)
             |> dict
-            // let groups =
-            //     m.Groups
-            //     |> Seq.cast<Group>
-            //     |> Seq.map(fun gc ->
-            //         (gc.Name, gc.Value)
-            //     )
-            //     |> dict
-            // groups
+
 
         let inline applyRoutes (appBuilder : IApplicationBuilder) routes =
             routes
