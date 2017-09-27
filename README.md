@@ -4,7 +4,7 @@
 This is a super simple url router for Owin/Kestrel.  It's designed be super simple with use from F# for microservices.  If you need something more robust I suggest [Suave](https://suave.io/), [Nancy](http://nancyfx.org/) or [Asp.Net](https://www.asp.net/core)
 
 
-Why Uhura?  It was a joke started around my office about making [Enterprise Ready™](https://twitter.com/swear_trek/status/908828866675986432) software.
+Why Uhura?  It was a joke started around my office about making [Enterprise Ready™](https://twitter.com/swear_trek/status/905086553780781056) software.
 
 
 ## build
