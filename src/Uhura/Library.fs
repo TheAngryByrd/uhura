@@ -107,7 +107,7 @@ module Web =
         
         let inline openHailingFrequencies (appBuilder : IApplicationBuilder) routes = 
             applyRoutes appBuilder routes
-            printfn "Halling frequencies open captain"
+            printfn "Hailing frequencies open captain"
 
         let inline tryGetNamedParam (groups : IDictionary<string,string>) key =
             match groups.TryGetValue key with
